@@ -7,7 +7,7 @@ const ModalHowContent = () => {
       <ModalHowExamples />
 
       <p className="modal__subtitle">
-        Guess the secret country using statistics!<br></br>A new game everyday,
+        Guess the Secret Country using Statistics!<br></br>A new game everyday,
         with 4 randomly chosen categories.
       </p>
       <p className="modal__text">
