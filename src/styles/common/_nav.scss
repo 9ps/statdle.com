@@ -1,0 +1,28 @@
+@import "../variables";
+@import "./button";
+
+.nav {
+  position: sticky;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: $w4;
+  top: 0;
+
+  background-color: $w10;
+
+  padding: 0 10px;
+  border-bottom: 3px solid $w8;
+
+  &__item {
+    overflow-x: hidden;
+    font-size: 18px;
+    text-align: center;
+  }
+  &__left {
+    text-align: left;
+  }
+  &__right {
+    text-align: right;
+  }
+}

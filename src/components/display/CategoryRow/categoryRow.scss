@@ -1,0 +1,38 @@
+@import "../../../styles/variables";
+@import "../../../styles/common/row";
+@import "../../../styles/animations";
+
+.position-symbol {
+  font-family: "IBM Plex Mono", "Roboto Mono", monospace;
+  justify-content: center;
+  width: 20px;
+  border-right: none !important;
+}
+
+.rank-number {
+  font-family: "IBM Plex Mono", "Roboto Mono", monospace;
+  justify-content: center;
+  width: 60px;
+  border-right: none !important;
+}
+
+.country-name {
+  flex: 1;
+  cursor: pointer;
+
+  &:focus {
+    outline: $m0 solid 2px;
+  }
+
+  &:focus:not(:focus-visible) {
+    outline: none;
+  }
+
+  @media screen and (max-width: 420px) {
+    font-family: "IBM Plex Sans Condensed", "Roboto Condensed", sans-serif;
+  }
+
+  @media screen and (max-width: 400px) {
+    font-size: 14px;
+  }
+}

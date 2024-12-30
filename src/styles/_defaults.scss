@@ -1,0 +1,101 @@
+@import "variables";
+@import "resets";
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600;700&family=IBM+Plex+Sans+Condensed&family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap");
+
+* {
+  vertical-align: baseline;
+  font-weight: inherit;
+  font-family: inherit;
+  font-style: inherit;
+  font-size: 100%;
+  border: 0 none;
+  outline: 0;
+  padding: 0;
+  margin: 0;
+}
+
+nav {
+  overflow: hidden;
+  & > * {
+    overflow: hidden;
+  }
+}
+
+body {
+  background-color: $w10;
+  color: $w1;
+  height: 100vh;
+
+  font-family: "IBM Plex Sans", "Roboto", sans-serif;
+  font-size: 16px;
+  scrollbar-color: $w8 $w10;
+}
+
+h1 {
+  font-family: "IBM Plex Mono", "Roboto Mono", monospace;
+  font-size: 16px;
+}
+
+h2 {
+  font-family: "IBM Plex Mono", "Roboto Mono", monospace;
+  font-size: 18px;
+  font-weight: normal;
+}
+
+h3 {
+  font-family: "IBM Plex Mono", "Roboto Mono", monospace;
+  font-size: 16px;
+}
+
+input {
+  background-color: $w10;
+  color: $w2;
+  outline-color: $p0;
+  border-radius: 3px;
+}
+
+em {
+  font-style: normal;
+  font-weight: bold;
+}
+
+a {
+  color: $w2;
+  text-decoration: none;
+  font-weight: bold;
+  display: block;
+}
+
+b {
+  font-weight: bold;
+}
+
+small {
+  font-size: 14px;
+}
+
+.emoji {
+  width: auto;
+  display: inline-flex;
+  height: inherit;
+  vertical-align: middle;
+  padding-right: 10px;
+  user-select: none;
+
+  &--small {
+    height: 20px;
+  }
+
+  &--medium {
+    height: 25px;
+  }
+
+  &--large {
+    height: 35px;
+  }
+}
+
+div:has(> img.emoji) {
+  display: inline;
+  align-content: baseline;
+}

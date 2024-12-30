@@ -1,0 +1,45 @@
+@import "../styles/variables";
+
+.main__container {
+  margin: 0 auto;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 420px;
+  padding-bottom: 60px;
+  height: calc(100vh - 120px);
+  overflow: scroll;
+}
+
+.tip {
+  &__container {
+    max-width: 300px;
+    margin: 0 auto;
+    text-align: center;
+    line-height: 1.25;
+    padding: 20px 0;
+  }
+
+  &__text {
+    color: $w2;
+    &--bottom {
+      color: $w4;
+      max-width: 300px;
+    }
+
+    &--big {
+      font-size: 18px;
+    }
+
+    &--small {
+      color: $w3;
+      font-family: "IBM Plex Mono", "Roboto Mono", monospace;
+      font-size: 12px;
+    }
+  }
+}
+
+.filler {
+  flex-grow: 1;
+}

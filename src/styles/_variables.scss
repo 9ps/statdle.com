@@ -1,0 +1,35 @@
+$p0: #503bba;
+$p1: #41309a;
+$p2: #35277c;
+$p3: #343258;
+
+$m0: #dd317c;
+$m1: #d3226f;
+$m2: #af1d5c;
+$m3: #772149;
+
+$w1: #f1f3f5;
+$w2: #dee2e6;
+$w3: #ced4da;
+$w4: #adb5bd;
+$w5: #616870;
+$w6: #495057;
+$w7: #343a40;
+$w8: #292e32;
+$w9: #25292d;
+$w10: #21252a;
+
+.swiper-button-prev,
+.swiper-button-next {
+  color: $m1;
+  &:hover {
+    color: $m0;
+  }
+}
+
+.swiper-pagination-bullet {
+  background-color: $w5;
+}
+.swiper-pagination-bullet-active {
+  background-color: $p1;
+}

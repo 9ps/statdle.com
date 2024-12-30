@@ -1,0 +1,39 @@
+@import "../../../styles/variables";
+@import "../../../styles/animations";
+@import "../../../styles/common/row";
+
+.details {
+  &__description {
+    color: $w4;
+    font-size: 14px;
+    text-align: center;
+    padding-top: 10px;
+  }
+
+  &__countries {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 10px;
+  }
+
+  &__country {
+    padding: 8px;
+    color: $w3;
+    background-color: $w8;
+    border-radius: 4px;
+    align-items: center;
+    display: flex;
+
+    & > span {
+      padding: 0 2px;
+    }
+  }
+
+  &__line {
+    flex: 1;
+    height: 2px;
+    background-color: $w7;
+    align-self: center;
+    margin: 0 10px;
+  }
+}

@@ -1,0 +1,21 @@
+@import "../../styles/variables";
+@import "../../styles/animations";
+
+.guess {
+  border-left: 2px $p3 solid;
+  align-items: center;
+  display: grid;
+  text-align: center;
+  height: 40px;
+
+  &__container {
+    display: grid;
+    grid-template-columns: auto max-content auto auto auto auto;
+    height: 40px;
+  }
+  &:first-child {
+    width: 132px;
+    border-left: none;
+    text-align: left;
+  }
+}

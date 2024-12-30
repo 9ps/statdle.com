@@ -1,0 +1,135 @@
+@import "../styles/variables";
+@import "../styles/common/button";
+
+.search__container {
+  position: fixed;
+  margin: 0 auto;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  max-width: 420px;
+  width: 100%;
+  background-color: $w10;
+}
+
+.suggestion {
+  border-bottom: 2px solid $w10;
+
+  padding: 5px 0px 5px 10px;
+  background-color: $w8;
+  color: $w4;
+  cursor: pointer;
+  align-items: center;
+
+  &:hover {
+    background-color: $p2;
+    color: $w1;
+  }
+
+  &__container {
+    margin: 0 5px;
+    max-height: 200px;
+    border-top: 5px solid $w10;
+    overflow-y: scroll;
+  }
+
+  &--selected {
+    background-color: $w6;
+    color: $w1;
+  }
+}
+
+.form {
+  display: flex;
+  margin: 0px 5px 5px 5px;
+}
+
+.country-search {
+  padding-left: 10px;
+  height: 40px;
+  flex: 1;
+  border-radius: 10px 0 0 10px;
+  border: $w7 solid 2px;
+  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box; /* Firefox, other Gecko */
+  box-sizing: border-box; /* Opera/IE 8+ */
+  z-index: 1;
+
+  &:focus {
+    border: $m1 solid 2px;
+    z-index: 2;
+  }
+
+  &:active {
+    border: $m1 solid 2px;
+    z-index: 2;
+  }
+
+  &--disabled {
+    cursor: not-allowed;
+    background-color: $w6;
+    &:active {
+      border: $w7 solid 2px;
+    }
+    &:focus {
+      border: $p0 solid 2px;
+    }
+  }
+}
+
+.country-submit {
+  width: 120px;
+  height: 40px;
+  border-radius: 0 10px 10px 0;
+  border: $w7 solid 2px;
+  transform: translateX(-2px);
+  z-index: 1;
+
+  &--active {
+    color: $w1;
+    // background-color: $p1;
+    border: $m1 solid 2px;
+
+    &:hover {
+      color: $w2;
+      background-color: $m2;
+      border: $m2 solid 2px;
+      cursor: pointer;
+    }
+
+    &:focus {
+      outline: $m1 solid 2px;
+      border: $m1 solid 2px;
+      z-index: 2;
+    }
+
+    &:focus:not(:focus-visible) {
+      // outline: none;
+      border: $m1 solid 2px;
+    }
+
+    &:active {
+      background-color: $m0;
+      transition-duration: 100ms;
+    }
+  }
+
+  &--disabled {
+    cursor: not-allowed;
+    border: $w7 solid 2px;
+    background-color: $w6;
+    color: $w4;
+
+    &:focus {
+      border: $m1 solid 2px;
+    }
+
+    &:focus:not(:focus-visible) {
+      border: $w7 solid 2px;
+    }
+  }
+}
+
+.suggestion-match-text {
+  color: $w1;
+}

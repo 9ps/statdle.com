@@ -1,0 +1,87 @@
+@import "../variables";
+
+.btn {
+  display: flex;
+  align-items: center;
+  user-select: none;
+  border-radius: 5px;
+  padding: 5px;
+  cursor: pointer;
+  background-color: yellow;
+
+  &--wide {
+    width: 100%;
+    display: flex;
+    margin: 10px auto;
+    align-items: center;
+    justify-content: center;
+    max-width: 320px;
+    padding: 10px 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: $w10;
+    color: $w1;
+    border: $m1 solid 2px;
+
+    &:hover {
+      color: $w2;
+      background-color: $m2;
+      border: $m2 solid 2px;
+      cursor: pointer;
+    }
+
+    &:focus {
+      outline: $m1 solid 2px;
+      border: $m1 solid 2px;
+    }
+
+    &:focus:not(:focus-visible) {
+      border: $m1 solid 2px;
+    }
+
+    &:active {
+      background-color: $m0;
+      transition-duration: 100ms;
+    }
+  }
+
+  &--icon {
+    background-color: $w10;
+    aspect-ratio: 1;
+    display: inline-block;
+    width: auto;
+    border-radius: 4px;
+    padding: 5px;
+
+    &:hover {
+      background-color: $w9;
+    }
+
+    &:focus {
+      background-color: $w8;
+      border: $p0 solid 3px;
+    }
+
+    &:active {
+      background-color: $w8;
+    }
+
+    &:focus:not(:focus-visible) {
+      border: none;
+    }
+  }
+
+  &--inactive {
+    cursor: not-allowed;
+    background-color: $w6;
+
+    &:focus {
+      box-shadow: none;
+      border: $p1 solid 3px;
+    }
+
+    &:focus:not(:focus-visible) {
+      border: none;
+    }
+  }
+}

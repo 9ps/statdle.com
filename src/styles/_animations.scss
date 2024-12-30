@@ -1,0 +1,233 @@
+@import "./variables";
+
+@keyframes animation-details-open {
+  0% {
+    opacity: 0;
+    margin-top: -20px;
+  }
+  25% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    margin-top: 0px;
+  }
+}
+
+@keyframes animation-popup {
+  from {
+    opacity: 0;
+    margin-top: 10px;
+  }
+  to {
+    opacity: 1;
+    margin-top: 0px;
+  }
+}
+
+@keyframes animation-modal-content {
+  from {
+    opacity: 0;
+    margin-top: 100px;
+  }
+  to {
+    opacity: 1;
+    margin-top: 0px;
+  }
+}
+
+@keyframes animation-modal-content-special {
+  0% {
+    opacity: 0;
+    margin-top: 100px;
+  }
+  80% {
+    opacity: 0;
+    margin-top: 100px;
+  }
+  100% {
+    opacity: 1;
+    margin-top: 0px;
+  }
+}
+
+@keyframes animation-modal-backing {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes animation-modal-backing-special {
+  0% {
+    opacity: 0;
+  }
+  80% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes animation-active--00 {
+  0% {
+    scale: 1;
+    background-color: $w10;
+  }
+  20% {
+    scale: 1.1;
+  }
+  40% {
+    scale: 1;
+    background-color: $p1;
+  }
+  100% {
+    scale: 1;
+    background-color: $p1;
+  }
+}
+
+@keyframes animation-active--10 {
+  0% {
+    scale: 1;
+    background-color: $w10;
+  }
+  20% {
+    scale: 1;
+    background-color: $w10;
+  }
+  40% {
+    scale: 1.1;
+  }
+  60% {
+    scale: 1;
+    background-color: $p1;
+  }
+  100% {
+    scale: 1;
+    background-color: $p1;
+  }
+}
+
+@keyframes animation-active--20 {
+  0% {
+    scale: 1;
+    background-color: $w10;
+  }
+  40% {
+    scale: 1;
+    background-color: $w10;
+  }
+  60% {
+    scale: 1.1;
+  }
+  80% {
+    scale: 1;
+    background-color: $p1;
+  }
+  100% {
+    scale: 1;
+    background-color: $p1;
+  }
+}
+
+@keyframes animation-active--30 {
+  0% {
+    scale: 1;
+    background-color: $w10;
+  }
+  60% {
+    scale: 1;
+    background-color: $w10;
+  }
+  80% {
+    scale: 1.1;
+  }
+  100% {
+    scale: 1;
+    background-color: $p1;
+  }
+}
+
+@keyframes animation-active--01 {
+  0% {
+    scale: 1;
+    background-color: $w10;
+  }
+  20% {
+    scale: 1.1;
+  }
+  40% {
+    scale: 1;
+    background-color: $p1;
+  }
+  100% {
+    scale: 1;
+    background-color: $p1;
+  }
+}
+
+@keyframes animation-active--11 {
+  0% {
+    scale: 1;
+    background-color: $w10;
+  }
+  20% {
+    scale: 1;
+    background-color: $w10;
+  }
+  40% {
+    scale: 1.1;
+  }
+  60% {
+    scale: 1;
+    background-color: $p1;
+  }
+  100% {
+    scale: 1;
+    background-color: $p1;
+  }
+}
+
+@keyframes animation-active--21 {
+  0% {
+    scale: 1;
+    background-color: $w10;
+  }
+  40% {
+    scale: 1;
+    background-color: $w10;
+  }
+  60% {
+    scale: 1.1;
+  }
+  80% {
+    scale: 1;
+    background-color: $p1;
+  }
+  100% {
+    scale: 1;
+    background-color: $p1;
+  }
+}
+
+@keyframes animation-active--31 {
+  0% {
+    scale: 1;
+    background-color: $w10;
+  }
+  60% {
+    scale: 1;
+    background-color: $w10;
+  }
+  80% {
+    scale: 1.1;
+  }
+  100% {
+    scale: 1;
+    background-color: $p1;
+  }
+}

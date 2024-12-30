@@ -1,0 +1,112 @@
+@import "../../styles/variables";
+@import "../../styles/common/button";
+
+.how-container {
+  padding: 20px 20px 100px 20px;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.onboard-example {
+  padding: 10px 10px 0 10px;
+  margin: 0 auto;
+  max-width: 400px;
+  border-radius: 3px;
+  min-height: 170px;
+}
+
+.bottom-button-container {
+  position: fixed;
+  z-index: 1;
+  margin: 0px auto;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: $w10;
+}
+
+.link {
+  display: flex;
+  padding: 10px 20px;
+  border-radius: 10px;
+  color: $w4;
+  border: 2px solid $p3;
+
+  background-color: $w9;
+  text-decoration: underline;
+  font-weight: normal;
+
+  &:hover {
+    color: $w1;
+    background-color: $w8;
+    cursor: pointer;
+  }
+
+  &:focus {
+    outline: $m1 solid 3px;
+    z-index: 1;
+  }
+
+  &:focus:not(:focus-visible) {
+    outline: none;
+  }
+}
+
+.modal {
+  &__text {
+    line-height: 1.5;
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__subtitle {
+    text-align: center;
+    padding-bottom: 30px;
+    margin-bottom: 10px;
+
+    font-size: 18px;
+    line-height: 1.5;
+  }
+
+  &__swiper {
+    border-bottom: 4px solid $w8;
+    margin-bottom: 30px;
+    cursor: grab;
+  }
+
+  &--link {
+    text-decoration: underline;
+  }
+}
+
+.swiper {
+  &__title {
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  &__text {
+    margin: 0 auto 35px auto;
+    max-width: 300px;
+    text-align: center;
+    line-height: 1.5;
+  }
+
+  &-pagination-bullet {
+    background-color: $w1;
+  }
+
+  &-pagination-bullet-active {
+    background-color: $p0;
+  }
+
+  &-button-prev {
+    color: $p0;
+  }
+
+  &-button-next {
+    color: $p0;
+  }
+}
