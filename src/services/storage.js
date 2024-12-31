@@ -10,9 +10,21 @@ export const setupStats = () => {
       guessedCountries: Object.fromEntries(COUNTRYCODES.map((key) => [key, 0])),
     };
 
-    // stats.tally = [5, 1, 2, 7, 9, 6, 4, 2, 1, 0, 1];
-
     localStorage.setItem("stats", JSON.stringify(stats));
+  } else {
+    if (localStorage.getItem("stats").maxSteak === undefined) {
+      const stats = {
+        played: 0,
+        streak: [],
+        maxStreak: 0,
+        tally: Array(11).fill(0),
+        guessedCountries: Object.fromEntries(
+          COUNTRYCODES.map((key) => [key, 0])
+        ),
+      };
+
+      localStorage.setItem("stats", JSON.stringify(stats));
+    }
   }
 };
 
