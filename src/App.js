@@ -1,7 +1,5 @@
 import React from "react";
 
-// import Setup from "./services/Setup";
-
 import Search from "./views/Search";
 import Display from "./views/Display";
 import Top from "./views/Top";
@@ -52,7 +50,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    localStorage.clear(); //TEST
+    // localStorage.clear(); //TEST
     // seedTest(); //TEST
     setupStats();
     this.setupGame();
