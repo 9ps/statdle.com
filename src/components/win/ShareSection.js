@@ -42,7 +42,7 @@ class ShareSection extends React.Component {
       text += "\n";
     }
 
-    text += "\nstatdle.com/";
+    text += "\nhttps://statdle.com/";
 
     navigator.clipboard.writeText(text);
     this.props.togglePopup(3);
