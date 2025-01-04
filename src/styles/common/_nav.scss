@@ -15,7 +15,6 @@
   border-bottom: 3px solid $w8;
 
   &__item {
-    overflow-x: hidden;
     font-size: 18px;
     text-align: center;
   }
@@ -25,4 +24,9 @@
   &__right {
     text-align: right;
   }
+}
+
+.icons {
+  height: 24px;
+  width: 24px;
 }

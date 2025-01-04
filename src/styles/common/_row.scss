@@ -4,12 +4,13 @@
 
 .display {
   &__group {
-    margin-bottom: 5px;
     display: flex;
     flex-direction: column;
     padding: 5px 0;
+    margin: 0 5px 0 5px;
 
-    @media screen and (min-height: 720px) {
+    @media screen and (min-height: 660px) {
+      transition-duration: 300ms;
       padding: 10px 0;
     }
 
@@ -64,6 +65,8 @@
     height: auto;
     border: 2px solid $p3;
     border-top: 0;
+    transition-duration: 300ms;
+    animation: animation-details-open 300ms ease;
   }
 
   &__cell {
@@ -145,6 +148,18 @@
     background-color: $p1;
     animation-duration: 1000ms;
     animation-name: animation-active--31;
+    animation-timing-function: ease;
+  }
+  &--00-tut {
+    background-color: $p1;
+    animation-duration: 3000ms;
+    animation-name: animation-active--00;
+    animation-timing-function: ease;
+  }
+  &--10-tut {
+    background-color: $p1;
+    animation-duration: 3000ms;
+    animation-name: animation-active--10;
     animation-timing-function: ease;
   }
 }

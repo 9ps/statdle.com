@@ -24,7 +24,7 @@ class ModalWin extends React.Component {
   render() {
     let stats = JSON.parse(localStorage.getItem("stats"));
     let content;
-    if (this.props.ended) {
+    if (this.props.hasEnded) {
       content = (
         <>
           <StatsDisplay stats={stats} />
@@ -35,16 +35,19 @@ class ModalWin extends React.Component {
           <GuessDistribution
             tally={stats.tally}
             played={stats.played}
-            currentScore={this.props.win ? this.props.history.length : 11}
+            currentScore={this.props.hasWon ? this.props.history.length : 11}
           />
-          <WinCountries history={this.props.history} win={this.props.win} />
+          <WinCountries
+            history={this.props.history}
+            hasWon={this.props.hasWon}
+          />
         </>
       );
     } else {
       content = (
         <>
           <StatsDisplay stats={stats} />
-          <WinCountries history={this.props.history} win={false} />
+          <WinCountries history={this.props.history} hasWon={false} />
           <p className="info__text">
             (finish playing the round for sharing options)
           </p>

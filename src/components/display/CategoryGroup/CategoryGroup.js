@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import CategoryRow from "../CategoryRow/CategoryRow.js";
 import CategoryTitle from "../CategoryTitle/CategoryTitle.js";
 import CategoryDetails from "../CategoryDetails/CategoryDetails.js";
-import "./categoryGroup.scss";
+import "../../../styles/common/_row.scss";
 import CategoryLine from "../CategoryLine/CategoryLine.js";
 
-// props: values[<catgoryName>, high, highname, low, lowName, target], active<[0, 0]>
+// props: values[<catgoryName>, high, highname, low, lowName, target], active<[0, 0]>, delay
 const CategoryGroup = (props) => {
   const [showValues, setShowValues] = useState(
     props.values[0] === "1" ? true : false

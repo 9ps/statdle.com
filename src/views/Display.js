@@ -30,32 +30,11 @@ const Display = (props) => {
     );
   });
 
-  let firstGuessNumber = <></>;
-  let firstGuessTip = <></>;
-  if (props.guessCount === 0) {
-    firstGuessNumber = (
-      <section className="tip__container">
-        <p className="tip__text tip__text--small">{"#" + props.today}</p>
-
-        <p className="tip__text tip__text--big">Today's Categories:</p>
-      </section>
-    );
-    firstGuessTip = (
-      <>
-        <section className="tip__container">
-          <p className="tip__text tip__text--bottom">
-            Tip: Guess a country that would rank in the middle of today’s
-            categories
-          </p>
-        </section>
-      </>
-    );
-  }
-
   const doBestGuess = () => {
     if (props.hints === undefined) {
       return;
     }
+    props.setHasHint();
     props.doSearch(props.hints[0].bestGuess[0]);
   };
 
@@ -69,12 +48,26 @@ const Display = (props) => {
         targets={targets}
         hints={props.hints}
         doBestGuess={doBestGuess}
-        win={props.win}
+        hasWon={props.hasWon}
+        setHasHint={props.setHasHint}
       />
-      {firstGuessNumber}
+      {props.guessCount === 0 && (
+        <section className="tip__container">
+          <p className="tip__text tip__text--small">{"#" + props.today}</p>
+
+          <p className="tip__text tip__text--big">Today's Categories:</p>
+        </section>
+      )}
       <section>{categories}</section>
       <div className="filler"></div>
-      {firstGuessTip}
+      {props.guessCount === 0 && (
+        <section className="tip__container">
+          <p className="tip__text tip__text--bottom">
+            Tip: Guess a country that would rank in the middle of today’s
+            categories
+          </p>
+        </section>
+      )}
     </main>
   );
 };

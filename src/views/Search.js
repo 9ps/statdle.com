@@ -2,7 +2,7 @@ import React from "react";
 import "./search.scss";
 import { COUNTRYNAMES } from "../assets/data.js";
 
-//props: history, ended
+//props: history, hasEnded
 class Search extends React.Component {
   constructor(props) {
     super(props);
@@ -182,7 +182,7 @@ class Search extends React.Component {
   handleSearch(e) {
     e.preventDefault();
 
-    if (this.props.ended) {
+    if (this.props.hasEnded) {
       return;
     }
 
@@ -295,11 +295,11 @@ class Search extends React.Component {
             onChange={this.handleChange}
             value={this.state.inputValue}
             onKeyDown={this.handleKeyDown}
-            disabled={this.props.ended}
-            aria-disabled={this.props.ended}
+            disabled={this.props.hasEnded}
+            aria-disabled={this.props.hasEnded}
             className={
               "country-search " +
-              (this.props.ended ? "country-search--disabled" : "")
+              (this.props.hasEnded ? "country-search--disabled" : "")
             }
             ref={(inp) => (this.searchInput = inp)}
           ></input>
@@ -307,7 +307,7 @@ class Search extends React.Component {
           <input
             type="submit"
             aria-label="guess"
-            aria-disabled={this.props.ended || !this.state.validCountry}
+            aria-disabled={this.props.hasEnded || !this.state.validCountry}
             className={
               "country-submit " +
               (this.state.validCountry

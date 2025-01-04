@@ -3,7 +3,35 @@
 @keyframes animation-details-open {
   0% {
     opacity: 0;
-    margin-top: -20px;
+    margin-top: -80px;
+  }
+  25% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    margin-top: 0px;
+  }
+}
+
+@keyframes animation-hints-open {
+  0% {
+    opacity: 0;
+    margin-top: -120px;
+  }
+  25% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    margin-top: 0px;
+  }
+}
+
+@keyframes animation-target-open {
+  0% {
+    opacity: 0;
+    margin-top: -40px;
   }
   25% {
     opacity: 0;

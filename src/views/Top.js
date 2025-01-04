@@ -6,9 +6,9 @@ import Table from "../assets/icons/table.svg";
 
 const Top = (props) => {
   return (
-    <nav className="nav" role="menubar">
+    <div className="nav">
       <h1 className="nav__item nav__left">↑↓ Statdle</h1>
-      <div className="nav__item nav__right">
+      <nav className="nav__item nav__right" role="navigation">
         <button
           role="menuitem"
           aria-label="data table"
@@ -36,8 +36,8 @@ const Top = (props) => {
         >
           <img className="icons" src={Help} alt="How to Play" />
         </button>
-      </div>
-    </nav>
+      </nav>
+    </div>
   );
 };
 

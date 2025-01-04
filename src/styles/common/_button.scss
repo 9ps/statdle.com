@@ -7,7 +7,6 @@
   border-radius: 5px;
   padding: 5px;
   cursor: pointer;
-  background-color: yellow;
 
   &--wide {
     width: 100%;
@@ -59,7 +58,7 @@
 
     &:focus {
       background-color: $w8;
-      border: $p0 solid 3px;
+      border: $m1 solid 2px;
     }
 
     &:active {
@@ -77,7 +76,7 @@
 
     &:focus {
       box-shadow: none;
-      border: $p1 solid 3px;
+      border: $m1 solid 3px;
     }
 
     &:focus:not(:focus-visible) {

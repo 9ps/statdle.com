@@ -1,49 +1,44 @@
 import { COUNTRYCODES } from "./../assets/data";
 
 export const setupStats = () => {
-  if (!localStorage.getItem("stats")) {
-    const stats = {
+  if (
+    localStorage.getItem("stats") !== null &&
+    localStorage.getItem("stats").maxSteak !== undefined &&
+    localStorage.getItem("stats").tally[0][1] !== undefined
+  ) {
+    return;
+  }
+  //prettier-ignore
+  const stats = {
       played: 0,
       streak: [],
       maxStreak: 0,
-      tally: Array(11).fill(0),
-      guessedCountries: Object.fromEntries(COUNTRYCODES.map((key) => [key, 0])),
-    };
+      tally: Array(10).fill([0, 0]),
+      guessedCountries: Object.fromEntries(COUNTRYCODES.map((key) => [key, 0]))};
 
-    localStorage.setItem("stats", JSON.stringify(stats));
-  } else {
-    if (localStorage.getItem("stats").maxSteak === undefined) {
-      const stats = {
-        played: 0,
-        streak: [],
-        maxStreak: 0,
-        tally: Array(11).fill(0),
-        guessedCountries: Object.fromEntries(
-          COUNTRYCODES.map((key) => [key, 0])
-        ),
-      };
-
-      localStorage.setItem("stats", JSON.stringify(stats));
-    }
-  }
+  localStorage.setItem("stats", JSON.stringify(stats));
 };
 
 export const setupStorageGame = (today) => {
+  let flagTest = supportsFlagEmoji();
+
   if (!localStorage.getItem("game")) {
-    return { modalType: 1 };
+    return { modalType: 1, supportsFlagEmoji: flagTest };
   }
 
   const game = JSON.parse(localStorage.getItem("game"));
-  if (game.date === today && !game.guessHistory) {
+  if (game.date === today && game.history !== undefined) {
     return {
       targetCountry: game.targetCountry,
       categories: game.categories,
       history: game.history,
-      win: game.win,
-      ended: game.ended,
+      hasWon: game.hasWon,
+      hasEnded: game.hasEnded,
+      hasHint: game.hasHint,
+      supportsFlagEmoji: flagTest,
     };
   } else {
-    return { modalType: 0 };
+    return { modalType: 0, supportsFlagEmoji: flagTest };
   }
 };
 
@@ -55,8 +50,9 @@ export const setStorageGame = (targetCountry, categories, date) => {
   game.date = date;
 
   game.history = [];
-  game.win = false;
-  game.ended = false;
+  game.hasWon = false;
+  game.hasEnded = false;
+  game.hasHint = false;
 
   localStorage.setItem("game", JSON.stringify(game));
 };
@@ -65,23 +61,29 @@ export const setStorageGame = (targetCountry, categories, date) => {
 export const updateStorageGame = (
   categories,
   history,
-  win = false,
-  ended = false
+  hasWon = false,
+  hasEnded = false
 ) => {
   let game = JSON.parse(localStorage.getItem("game")) || {};
   game.categories = categories;
   game.history = history;
-  game.win = win;
-  game.ended = ended;
+  game.hasWon = hasWon;
+  game.hasEnded = hasEnded;
 
   localStorage.setItem("game", JSON.stringify(game));
 };
 
-export const updateStorageStats = (win, history, date) => {
+export const updateStorageHint = () => {
+  let game = JSON.parse(localStorage.getItem("game")) || {};
+  game.hasHint = true;
+  localStorage.setItem("game", JSON.stringify(game));
+};
+
+export const updateStorageStats = (hasWon, hasHint, history, date) => {
   let stats = JSON.parse(localStorage.getItem("stats"));
 
   let played = stats.played + 1 || 0;
-  let tally = stats.tally || Array(11).fill(0);
+  let tally = stats.tally || Array(10).fill([0, 0]);
   let totalGuessedCountries =
     stats.guessedCountries ||
     Object.fromEntries(COUNTRYCODES.map((key) => [key, 0]));
@@ -90,8 +92,10 @@ export const updateStorageStats = (win, history, date) => {
 
   let guessedCountries = Object.values(history).map((guess) => guess.code);
 
-  if (win) {
-    tally[guessedCountries.length] += 1;
+  if (hasWon) {
+    hasHint
+      ? (tally[guessedCountries.length][1] += 1)
+      : (tally[guessedCountries.length][0] += 1);
 
     if (streak.at(-1) + 1 === date) {
       streak.push(date);
@@ -103,7 +107,7 @@ export const updateStorageStats = (win, history, date) => {
       maxStreak = 1;
     }
   } else {
-    tally[0] += 1;
+    hasHint ? (tally[0][1] += 1) : (tally[0][0] += 1);
     streak = [];
   }
 
@@ -120,4 +124,20 @@ export const updateStorageStats = (win, history, date) => {
   };
 
   localStorage.setItem("stats", JSON.stringify(stats));
+};
+
+export const supportsFlagEmoji = () => {
+  var canvas = document.createElement("canvas");
+  canvas.height = 10;
+  canvas.width = canvas.height * 2;
+  var ctx = canvas.getContext("2d");
+  ctx.font = canvas.height + "px Arial";
+  ctx.fillText("🇬🇧", 0, canvas.height);
+  var data = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
+  var i = 0;
+  while (i < data.length) {
+    if (data[i] !== data[i + 1] || data[i] !== data[i + 2]) return true;
+    i += 4;
+  }
+  return false;
 };

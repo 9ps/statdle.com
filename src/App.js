@@ -16,6 +16,7 @@ import {
   setStorageGame,
   updateStorageGame,
   updateStorageStats,
+  updateStorageHint,
 } from "./services/storage";
 import { seedTarget, populateCategories } from "./services/seeding";
 import {
@@ -37,14 +38,16 @@ class App extends React.Component {
     this.updateDisplayWin = this.updateDisplayWin.bind(this);
     this.toggleModal = this.toggleModal.bind(this);
     this.togglePopup = this.togglePopup.bind(this);
+    this.setHasHint = this.setHasHint.bind(this);
 
     this.state = {
       categories: {}, // {<categoryname>: {high: <0>, highName: <"">, low: <0> lowName: <""> target: <0>, activeRow: <0>}, ...}
       history: [], //[{name: "", correct: 0, range: N}, ...]
       modalType: 0, //0: "none", 1: "how" 2: "win from top" 3: "win", 4: "table" TODO
       popupType: 0, //0: "none", 1: "Already Guessed", 2: "Invalid Country", 3: "Copied to Clipboard"
-      win: false,
-      ended: false,
+      hasWon: false,
+      hasHint: false,
+      hasEnded: false,
       today: Math.floor(new Date().setHours(0, 0, 0, 0) / 86400000) - 19101,
     };
   }
@@ -60,7 +63,7 @@ class App extends React.Component {
   setupGame() {
     const newState = setupStorageGame(this.state.today);
     this.setState(newState);
-    if (Object.keys(newState).length === 5) {
+    if (Object.keys(newState).length === 7) {
       return;
     }
 
@@ -90,7 +93,7 @@ class App extends React.Component {
       validCountries: [],
       bestGuess: "",
     };
-    let ended = false;
+    let hasEnded = false;
 
     //win condition
     if (newCountry === this.state.targetCountry) {
@@ -100,10 +103,15 @@ class App extends React.Component {
 
     if (this.state.history.length >= 9) {
       // lose condition
-      updateStorageStats(this.state.win, this.state.history, this.state.today);
+      updateStorageStats(
+        this.state.hasWon,
+        this.state.hasHint,
+        this.state.history,
+        this.state.today
+      );
       this.togglePopup(5);
       this.toggleModal(3);
-      ended = true;
+      hasEnded = true;
     }
 
     evaluateCountry(this.state.categories, newValues, newCountry, newHistory);
@@ -116,10 +124,10 @@ class App extends React.Component {
     this.setState({
       categories: newCategories,
       history: finalHistory,
-      ended: ended,
+      hasEnded: hasEnded,
     });
 
-    updateStorageGame(newCategories, finalHistory, false, ended);
+    updateStorageGame(newCategories, finalHistory, false, hasEnded);
   }
 
   updateDisplayWin(newCategories, newHistory, newCountry, newValues) {
@@ -149,12 +157,13 @@ class App extends React.Component {
       {
         categories: newCategories,
         history: finalHistory,
-        win: true,
-        ended: true,
+        hasWon: true,
+        hasEnded: true,
       },
       () => {
         updateStorageStats(
-          this.state.win,
+          this.state.hasWon,
+          this.state.hasHint,
           this.state.history,
           this.state.today
         );
@@ -185,11 +194,18 @@ class App extends React.Component {
     if (!inp) {
       this.togglePopup(2);
       return;
-    } else if (this.state.ended) {
+    } else if (this.state.hasEnded) {
       return;
     }
 
     this.updateDisplay(inp);
+  }
+
+  setHasHint() {
+    updateStorageHint();
+    this.setState({
+      hasHint: true,
+    });
   }
 
   /* -------------------- */
@@ -210,8 +226,8 @@ class App extends React.Component {
             categories={this.state.categories}
             history={this.state.history}
             special={false}
-            win={this.state.win}
-            ended={this.state.ended}
+            hasWon={this.state.hasWon}
+            hasEnded={this.state.hasEnded}
             today={this.state.today}
           />
         );
@@ -225,8 +241,8 @@ class App extends React.Component {
             categories={this.state.categories}
             history={this.state.history}
             special={true}
-            win={this.state.win}
-            ended={this.state.ended}
+            hasWon={this.state.hasWon}
+            hasEnded={this.state.hasEnded}
             today={this.state.today}
           />
         );
@@ -248,8 +264,9 @@ class App extends React.Component {
     return (
       <>
         <Confetti
-          win={this.state.win}
+          hasWon={this.state.hasWon}
           guessedCountries={this.state.history.map((item) => item.code)}
+          supportsFlagEmoji={this.state.supportsFlagEmoji}
         />
         {popupDisplay}
         {modalDisplay}
@@ -258,15 +275,16 @@ class App extends React.Component {
           values={this.state.categories}
           hints={this.state.history.slice(-1)}
           doSearch={this.doSearch}
+          setHasHint={this.setHasHint}
           guessCount={this.state.history.length}
-          win={this.state.win}
+          hasWon={this.state.hasWon}
           today={this.state.today}
         />
         <Search
           doSearch={this.doSearch}
           togglePopup={this.togglePopup}
           history={this.state.history}
-          ended={this.state.ended}
+          hasEnded={this.state.hasEnded}
           guessCount={this.state.history.length}
         />
       </>

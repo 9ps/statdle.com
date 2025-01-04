@@ -5,14 +5,14 @@
 .position-symbol {
   font-family: "IBM Plex Mono", "Roboto Mono", monospace;
   justify-content: center;
-  width: 20px;
+  width: 10px;
   border-right: none !important;
 }
 
 .rank-number {
   font-family: "IBM Plex Mono", "Roboto Mono", monospace;
   justify-content: center;
-  width: 60px;
+  width: 50px;
   border-right: none !important;
 }
 
@@ -28,11 +28,9 @@
     outline: none;
   }
 
-  @media screen and (max-width: 420px) {
+  @media screen and (max-width: 330px) {
+    transition-duration: 300ms;
     font-family: "IBM Plex Sans Condensed", "Roboto Condensed", sans-serif;
-  }
-
-  @media screen and (max-width: 400px) {
     font-size: 14px;
   }
 }

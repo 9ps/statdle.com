@@ -37,7 +37,7 @@ export const CATEGORYTEXT = [["Name Alphabetically", "Country name alphabeticall
 ["Linguistic Diversity", "Index measuring the chance that any two random people would have different mother tongues", "PG", "KP", "ETHNOLOGUE/UNESCO*", "Maldives taken from 2009 UNESCO report."],
 ["Country Rectangularness", "The maximum percentage overlap of a country area to a rectangle of the same area", "EG", "MV", "DAVID BARRY", "Source includes non-dependenices as part of the caculation - e.g. French Guiana for France, Bouvet Island for Norway, which throws off predictions."],
 ["Date of Sovereignty", "Dubious date of a country's formation, from oldest to most recent", "CN", "SS", "WIKIPEDIA*", "Data from first value provided. For entries without a specific day or month, the 1st and January were used respectively."],
-["Internet Domains", "Country top level (ccTLD) domain names", "DE", "BD", "NETMEISTER", "Top ccTLDs from 2024, while not complete, the most accurate overview"]]
+["Internet Domains", "Number of Internet Domains (ccTLD's)", "DE", "BD", "NETMEISTER", "Top ccTLDs from 2024, while not complete, the most accurate overview"]]
 
 // Country Code: [Rank, Value], ...
 // prettier-ignore

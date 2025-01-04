@@ -15,7 +15,7 @@ class ShareSection extends React.Component {
   share(e) {
     // Get day of challenge
     const history = this.props.history;
-    const guessAmount = this.props.win ? history.length : "X";
+    const guessAmount = this.props.hasWon ? history.length : "X";
     var text =
       "#Statdle " + this.props.today + "\n" + guessAmount + "/10 Guesses\n";
 

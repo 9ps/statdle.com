@@ -4,12 +4,12 @@ import ModalHowExamples from "./ModalHowExamples";
 const ModalHowContent = () => {
   return (
     <div className="how-container">
-      <ModalHowExamples />
-
       <p className="modal__subtitle">
         Guess the Secret Country using Statistics!<br></br>A new game everyday,
-        with 4 randomly chosen categories.
+        with 4 random categories.
       </p>
+      <ModalHowExamples />
+
       <p className="modal__text">
         <a
           className="link"

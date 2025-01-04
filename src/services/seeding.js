@@ -58,10 +58,12 @@ export const populateCategories = (targetCountry, today) => {
 
 /* generate 1 random value */
 export const seedTarget = (seed) => {
-  const gen = seedrandom(seed);
+  let gen = seedrandom(seed);
   let countryRandIndex;
-  do {
-    countryRandIndex = Math.floor(gen() * NUMCOUNTRIES); //country randomizer
-  } while (countryRandIndex === 77);
+  countryRandIndex = Math.floor(gen() * NUMCOUNTRIES); //country randomizer
+  if (countryRandIndex === 77) {
+    gen = seedrandom(seed - 100);
+    countryRandIndex = Math.floor(gen() * NUMCOUNTRIES);
+  }
   return Object.keys(DATA)[countryRandIndex];
 };

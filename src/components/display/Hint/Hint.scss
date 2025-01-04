@@ -29,6 +29,20 @@
       background-color: $w8;
       cursor: pointer;
     }
+
+    &:focus {
+      border: $m1 solid 3px;
+    }
+
+    &:focus:not(:focus-visible) {
+      outline: none;
+    }
+
+    @media screen and (max-width: 330px) {
+      transition-duration: 300ms;
+      font-family: "IBM Plex Sans Condensed", "Roboto Condensed", sans-serif;
+      font-size: 14px;
+    }
   }
 
   &:last-child {
@@ -58,8 +72,21 @@
       cursor: pointer;
     }
 
+    &:focus {
+      border: $m1 solid 3px;
+    }
+
+    &:focus:not(:focus-visible) {
+      outline: none;
+    }
+
     > .details__right {
       border-left: 2px $p3 solid;
+    }
+
+    @media screen and (max-width: 330px) {
+      transition-duration: 300ms;
+      font-size: 14px;
     }
   }
 
@@ -87,7 +114,7 @@
   }
 
   &__container {
-    margin-bottom: 10px;
+    margin: 0 5px 10px 5px;
 
     &[open] > summary {
       border-radius: 10px 10px 0 0;
@@ -99,6 +126,10 @@
 
     > summary > :last-child::after {
       content: "‎ +";
+    }
+
+    &[open] > .details__hints {
+      animation: animation-hints-open 300ms ease;
     }
   }
 
@@ -145,17 +176,24 @@ details > summary {
   display: grid;
   text-align: center;
   height: 40px;
+  min-width: 40px;
 
   &__container {
     display: grid;
     grid-template-columns: max-content auto auto auto auto;
     height: 40px;
+    animation: animation-target-open 300ms ease;
   }
   &:first-child {
-    width: 132px;
+    min-width: 80px;
     padding-left: 20px;
     border-left: none;
     text-align: left;
+  }
+
+  @media screen and (max-width: 330px) {
+    transition-duration: 300ms;
+    font-size: 14px;
   }
 }
 
@@ -174,6 +212,8 @@ details > summary {
     display: block;
     height: 120px;
     overflow-y: scroll;
+
+    animation: animation-hints-open 300ms ease;
   }
 
   &__emoji {
@@ -181,8 +221,9 @@ details > summary {
   }
 
   &__name {
-    @media screen and (max-width: 360px) {
+    @media screen and (max-width: 330px) {
       font-family: "IBM Plex Sans Condensed", "Roboto Condensed", sans-serif;
+      font-size: 14px;
     }
   }
 }

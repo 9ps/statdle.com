@@ -2,7 +2,7 @@ import React from "react";
 import { COUNTRYEMOJI } from "../../assets/data";
 import Twemoji from "react-twemoji";
 
-// props: stats, win [true/false]
+// props: stats, hasWon
 const GuessedCountries = (props) => {
   let countries = Object.entries(props.history).map((obj, index) => {
     const name = obj[1].name;
