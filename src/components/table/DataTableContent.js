@@ -19,8 +19,10 @@ const DataTableContent = ({ categoryIndex }) => {
     <tr key={item[0]} className="data__tr">
       <td className="data__td">{item[1][categoryIndex][0]}</td>
       <td className="data__td">
-        <Twemoji className="emoji--medium">{COUNTRYEMOJI[item[0]]}</Twemoji>
-        <span>{item[1][0][1]}</span>
+        <Twemoji className="emoji emoji--medium">
+          {COUNTRYEMOJI[item[0]]}
+        </Twemoji>
+        <span className="data__td--country">{item[1][0][1]}</span>
       </td>
       {categoryIndex !== "0" && (
         <td className="data__td">{renderValue(item)}</td>
@@ -35,6 +37,8 @@ const DataTableContent = ({ categoryIndex }) => {
         VALUETEXT[categoryIndex][2].trim() +
         ")";
 
+  const includeNotes = CATEGORYTEXT[categoryIndex][5] !== "";
+
   return (
     <div className="data__container">
       <div className="category-info__top">
@@ -42,10 +46,12 @@ const DataTableContent = ({ categoryIndex }) => {
         <br />
         <small>{"SOURCE: " + CATEGORYTEXT[categoryIndex][4]}</small>
         <br />
-        <br />
-        <small>{"NOTES: " + CATEGORYTEXT[categoryIndex][5]}</small>
-        <br />
-        <br />
+        {includeNotes && (
+          <>
+            <small>{"NOTES: " + CATEGORYTEXT[categoryIndex][5]}</small>
+            <br />
+          </>
+        )}
       </div>
       <table>
         <thead>

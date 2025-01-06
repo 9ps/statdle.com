@@ -1,11 +1,12 @@
 import React from "react";
+
 import StatsDisplay from "./StatsDisplay";
 import WinCountries from "./GuessedCountries";
-import "./modalWin.scss";
-import Close from "../../assets/icons/close.svg";
 import GuessDistribution from "./GuessDistribution";
 import ShareSection from "./ShareSection";
 
+import "./modalWin.scss";
+import Close from "../../assets/icons/close.svg";
 const FocusTrap = require("focus-trap-react");
 
 class ModalWin extends React.Component {
@@ -13,11 +14,19 @@ class ModalWin extends React.Component {
     super(props);
 
     this.stopPropagation = this.stopPropagation.bind(this);
+    this.handleKeyDown = this.handleKeyDown.bind(this);
   }
 
   stopPropagation(e) {
     if (e) {
       e.stopPropagation();
+    }
+  }
+
+  handleKeyDown(e) {
+    if (e.keyCode === 27) {
+      this.props.toggleModal();
+      return;
     }
   }
 
@@ -47,11 +56,11 @@ class ModalWin extends React.Component {
       content = (
         <>
           <StatsDisplay stats={stats} />
-          <WinCountries history={this.props.history} hasWon={false} />
           <p className="info__text">
-            (finish playing the round for sharing options)
+            (finish playing the game for sharing options)
           </p>
           <GuessDistribution tally={stats.tally} played={stats.played} />
+          <WinCountries history={this.props.history} hasWon={false} />
         </>
       );
     }
@@ -64,6 +73,7 @@ class ModalWin extends React.Component {
             (this.props.special ? " modal-backing--special" : "")
           }
           onClick={() => this.props.toggleModal()}
+          onKeyDown={this.handleKeyDown}
         >
           <div
             className={"modal" + (this.props.special ? " modal--special" : "")}

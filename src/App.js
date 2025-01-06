@@ -216,7 +216,8 @@ class App extends React.Component {
       case 0:
         break;
       case 1:
-        return <ModalHow toggleModal={this.toggleModal} />;
+        modalDisplay = <ModalHow toggleModal={this.toggleModal} />;
+        break;
       case 2:
         modalDisplay = (
           <ModalWin
@@ -277,7 +278,7 @@ class App extends React.Component {
           doSearch={this.doSearch}
           setHasHint={this.setHasHint}
           guessCount={this.state.history.length}
-          hasWon={this.state.hasWon}
+          hasEnded={this.state.hasEnded}
           today={this.state.today}
         />
         <Search

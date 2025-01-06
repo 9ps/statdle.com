@@ -3,8 +3,7 @@ import { COUNTRYCODES } from "./../assets/data";
 export const setupStats = () => {
   if (
     localStorage.getItem("stats") !== null &&
-    localStorage.getItem("stats").maxSteak !== undefined &&
-    localStorage.getItem("stats").tally[0][1] !== undefined
+    JSON.parse(localStorage.getItem("stats")).maxStreak !== undefined
   ) {
     return;
   }
@@ -14,7 +13,7 @@ export const setupStats = () => {
       streak: [],
       maxStreak: 0,
       tally: Array(10).fill([0, 0]),
-      guessedCountries: Object.fromEntries(COUNTRYCODES.map((key) => [key, 0]))};
+      totalGuessedCountries: Object.fromEntries(COUNTRYCODES.map((key) => [key, 0]))};
 
   localStorage.setItem("stats", JSON.stringify(stats));
 };
@@ -85,10 +84,10 @@ export const updateStorageStats = (hasWon, hasHint, history, date) => {
   let played = stats.played + 1 || 0;
   let tally = stats.tally || Array(10).fill([0, 0]);
   let totalGuessedCountries =
-    stats.guessedCountries ||
+    stats.totalGuessedCountries ||
     Object.fromEntries(COUNTRYCODES.map((key) => [key, 0]));
   let streak = stats.streak || [];
-  let maxStreak = stats.maxSteak || 0;
+  let maxStreak = stats.maxStreak || 0;
 
   let guessedCountries = Object.values(history).map((guess) => guess.code);
 

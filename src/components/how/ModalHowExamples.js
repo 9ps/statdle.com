@@ -34,14 +34,19 @@ const ModalHowExamples = () => {
     setSearchEmpty(1);
   };
 
+  const handleSlideChange = (swiper) => {
+    setPreCount(swiper.realIndex);
+    setSearchEmpty(0);
+  };
+
   const typewriter = () => {
     return (
       <Typewriter
         words={[words[preCount], ""]}
         loop={1}
         typeSpeed={100}
-        deleteSpeed={10}
-        delaySpeed={10}
+        deleteSpeed={0}
+        delaySpeed={99}
         onDelete={handleDone}
         key={preCount}
       />
@@ -50,56 +55,57 @@ const ModalHowExamples = () => {
 
   return (
     <>
-      <div className="example">
-        <div className="category__container">
-          <CategoryGroup
-            values={values[count]}
-            active={active[count]}
-            guessCount={count}
-            index={0}
-          />
-        </div>
-        <div
-          className={`example__search
+      <div className="example__container">
+        <div className="example">
+          <div className="category__container">
+            <CategoryGroup
+              values={values[count]}
+              active={active[count]}
+              guessCount={count}
+              index={0}
+            />
+          </div>
+          <div
+            className={`example__search
             ${searchEmpty && "example__search--empty"} 
             ${count === 4 && searchEmpty && "example__search--disabled"}`}
-        >
-          <span className="example__type">{typewriter()}</span>
+          >
+            <span className="example__type">{typewriter()}</span>
+          </div>
         </div>
+        <Swiper
+          navigation={true}
+          modules={[Pagination, Navigation]}
+          pagination={true}
+          className="modal__swiper"
+          onSlideChange={handleSlideChange}
+        >
+          <SwiperSlide>
+            <p className="swiper__text">
+              <em>Austria</em> (10th) is higher ranked <br /> than the{" "}
+              <em>Secret Country</em>
+            </p>
+          </SwiperSlide>
+          <SwiperSlide>
+            <p className="swiper__text">
+              <em>Cambodia</em> (30th) is lower ranked <br /> than the{" "}
+              <em>Secret Country</em>
+            </p>
+          </SwiperSlide>
+          <SwiperSlide>
+            <p className="swiper__text">
+              <em>Denmark</em> (40th) is lower ranked <br /> than{" "}
+              <em>Cambodia</em>
+            </p>
+          </SwiperSlide>
+          <SwiperSlide>
+            <p className="swiper__text">
+              <em>Bhutan</em> (20th) is the <em>Secret Country!</em> <br /> Now
+              try the real game with 4 categories.
+            </p>
+          </SwiperSlide>
+        </Swiper>
       </div>
-      <Swiper
-        navigation={true}
-        modules={[Pagination, Navigation]}
-        pagination={true}
-        className="modal__swiper"
-        onSlideChange={(swiper) => ((
-          setPreCount(swiper.realIndex), setSearchEmpty(0)
-        ))}
-      >
-        <SwiperSlide>
-          <p className="swiper__text">
-            <em>Austria</em> (10th) is higher ranked <br /> than the{" "}
-            <em>Secret Country</em>
-          </p>
-        </SwiperSlide>
-        <SwiperSlide>
-          <p className="swiper__text">
-            <em>Cambodia</em> (30th) is lower ranked <br /> than the{" "}
-            <em>Secret Country</em>
-          </p>
-        </SwiperSlide>
-        <SwiperSlide>
-          <p className="swiper__text">
-            <em>Denmark</em> (40th) is lower ranked <br /> than{" "}
-            <em>Cambodia</em>
-          </p>
-        </SwiperSlide>
-        <SwiperSlide>
-          <p className="swiper__text">
-            <em>Bhutan</em> (20th) is the <em>Secret Country!</em>
-          </p>
-        </SwiperSlide>
-      </Swiper>
     </>
   );
 };

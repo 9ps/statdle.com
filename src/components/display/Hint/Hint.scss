@@ -31,11 +31,14 @@
     }
 
     &:focus {
-      border: $m1 solid 3px;
+      border: $m1 solid 2px;
     }
 
     &:focus:not(:focus-visible) {
-      outline: none;
+      border-bottom: 2px $p3 solid;
+      border-left: 2px $p3 solid;
+      border-right: 2px $p3 solid;
+      border-top: none;
     }
 
     @media screen and (max-width: 330px) {
@@ -73,11 +76,11 @@
     }
 
     &:focus {
-      border: $m1 solid 3px;
+      border: $m1 solid 2px;
     }
 
     &:focus:not(:focus-visible) {
-      outline: none;
+      border: 2px solid $p3;
     }
 
     > .details__right {

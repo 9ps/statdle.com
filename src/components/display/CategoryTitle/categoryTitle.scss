@@ -37,7 +37,7 @@
   }
 
   &:focus {
-    outline: $m1 solid 3px;
+    outline: $m1 solid 2px;
   }
 
   &:focus:not(:focus-visible) {

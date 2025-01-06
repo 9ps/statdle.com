@@ -32,10 +32,12 @@
     &:focus {
       outline: $m1 solid 2px;
       border: $m1 solid 2px;
+      background-color: $m2;
     }
 
     &:focus:not(:focus-visible) {
       border: $m1 solid 2px;
+      background-color: $w10;
     }
 
     &:active {
@@ -76,11 +78,58 @@
 
     &:focus {
       box-shadow: none;
-      border: $m1 solid 3px;
+      border: $m1 solid 2px;
     }
 
     &:focus:not(:focus-visible) {
       border: none;
     }
+  }
+
+  &--chip {
+    background-color: $w9;
+    outline: $p3 solid 2px;
+    color: $w4;
+    display: inline-flex;
+    justify-content: center;
+    margin: 5px;
+    padding: 5px 10px;
+    font-size: 14px;
+
+    & > img {
+      margin-right: 10px;
+    }
+
+    & > span {
+      text-align: left;
+    }
+
+    &:hover {
+      color: $w1;
+      background-color: $w8;
+      cursor: pointer;
+    }
+
+    &:focus {
+      outline: $m1 solid 2px;
+      color: $w1;
+    }
+
+    &:focus:not(:focus-visible) {
+      outline: $p3 solid 2px;
+    }
+
+    &__group {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+  &--bottom {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    right: 0;
   }
 }

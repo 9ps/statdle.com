@@ -22,7 +22,7 @@ const CategoryRow = (props) => {
         className={"display__cell country-name " + activeClass}
         onClick={props.flipShowValues}
       >
-        <Twemoji className="emoji--medium">{emoji}</Twemoji>
+        <Twemoji className="emoji emoji--medium">{emoji}</Twemoji>
         <span>{props.showValues ? props.value : props.name}</span>
       </span>
     </div>

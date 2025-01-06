@@ -14,12 +14,12 @@ const CategoryDetails = (props) => {
       <p className="details__description">{CATEGORYTEXT[props.index][1]}</p>
       <div className="details__countries">
         <span className="details__country">
-          <Twemoji className="emoji--medium">{emojiFirst}</Twemoji>
+          <Twemoji className="emoji emoji--medium">{emojiFirst}</Twemoji>
           <span>{DATA[CATEGORYTEXT[props.index][2]][0][1]}</span>
         </span>
         <span className="details__line"></span>
         <span className="details__country">
-          <Twemoji className="emoji--medium">{emojiLast}</Twemoji>
+          <Twemoji className="emoji emoji--medium">{emojiLast}</Twemoji>
           <span>{DATA[CATEGORYTEXT[props.index][3]][0][1]}</span>
         </span>
       </div>

@@ -57,7 +57,7 @@ class ShareSection extends React.Component {
     return (
       <div className="share-section">
         <h2 className="guess-count">
-          <Twemoji className="emoji--large">{emoji}</Twemoji>
+          <Twemoji className="emoji emoji--large">{emoji}</Twemoji>
           {countryName}
         </h2>
         {guessedBefore && (

@@ -1,0 +1,67 @@
+@import "../variables";
+@import "../../styles/animations";
+
+.modal-backing {
+  position: fixed;
+  display: block;
+  display: flex;
+
+  margin: 0 auto;
+  top: 0;
+  left: 0;
+
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+
+  background-color: #141619dd;
+  cursor: pointer;
+
+  animation: animation-modal-backing 300ms ease;
+
+  &--special {
+    animation: animation-modal-backing-special 3000ms ease;
+  }
+}
+
+.modal {
+  display: block;
+  align-self: center;
+  position: relative;
+
+  margin: 0 auto;
+  max-height: 95%;
+  min-height: 520px;
+  height: 720px;
+
+  max-width: 95%;
+  width: 600px;
+  min-width: 320px;
+
+  overflow: auto;
+
+  background-color: $w10;
+  cursor: auto;
+  border-radius: 10px;
+
+  animation: animation-modal-content 300ms ease;
+
+  &--special {
+    animation: animation-modal-content-special 1500ms ease;
+  }
+
+  &__body {
+    max-width: 400px;
+    padding: 0px 10px 20px 10px;
+    margin: 0 auto;
+  }
+
+  &__title-bar {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+    align-items: center;
+    border-bottom: 2px solid $w8;
+    color: $w4;
+  }
+}

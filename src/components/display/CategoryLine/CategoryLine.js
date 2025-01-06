@@ -10,7 +10,7 @@ const CategoryLine = (props) => {
   return (
     <div className="display__row">
       <span className={"display__line " + activeClass}>
-        <Twemoji className={"emoji--small"}>{emoji}</Twemoji>
+        <Twemoji className="emoji emoji--small">{emoji}</Twemoji>
         <span>
           is too {props.direction} (#{props.rank})
         </span>

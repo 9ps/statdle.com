@@ -50,7 +50,7 @@ input {
   background-color: $w10;
   color: $w2;
   outline-color: $p0;
-  border-radius: 3px;
+  border-radius: 5px;
 }
 
 em {
@@ -59,10 +59,7 @@ em {
 }
 
 a {
-  color: $w2;
   text-decoration: none;
-  font-weight: bold;
-  display: block;
 }
 
 b {
@@ -78,7 +75,7 @@ small {
   display: inline-flex;
   height: inherit;
   vertical-align: middle;
-  padding-right: 10px;
+  padding-right: 5px;
   user-select: none;
 
   &--small {

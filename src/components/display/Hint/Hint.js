@@ -3,24 +3,32 @@ import { DATA, COUNTRYEMOJI } from "../../../assets/data";
 import Twemoji from "react-twemoji";
 import "./Hint.scss";
 
-// props: hints=[this.state.history.validCountries, this.state.history.bestGuess] targets = [1,2,3,4], hasWon
+// props: hints=[this.state.history.validCountries, this.state.history.bestGuess] targets = [1,2,3,4], hasEnded
 const Hint = (props) => {
   const [targetShown, setTargetShown] = useState(0);
   const [validCountriesShown, setValidCountriesShown] = useState(0);
 
   useEffect(() => {
-    if (props.hasWon) {
+    if (props.hasEnded) {
       setTargetShown(false);
       setValidCountriesShown(false);
     }
-  }, [props.hasWon]);
+  }, [props.hasEnded]);
 
   const flipTargetShown = () => {
+    if (props.hasEnded) {
+      setTargetShown(false);
+      return;
+    }
     setTargetShown(!targetShown);
     props.setHasHint();
   };
 
   const flipValidCountriesShown = () => {
+    if (props.hasEnded) {
+      setValidCountriesShown(false);
+      return;
+    }
     setValidCountriesShown(!validCountriesShown);
     props.setHasHint();
   };
@@ -37,7 +45,7 @@ const Hint = (props) => {
       ValidCountriesLeft = props.hints[0].validCountries.map((country) => {
         return (
           <div className="valid-country" key={[country]}>
-            <Twemoji className="emoji--medium valid-country__emoji">
+            <Twemoji className="emoji emoji--medium valid-country__emoji">
               {COUNTRYEMOJI[country] || ""}
             </Twemoji>
             <span className="valid-country__name">{DATA[country][0][1]}</span>
@@ -63,7 +71,7 @@ const Hint = (props) => {
 
         <div className="details__hints">
           <button className="details details--button" onClick={flipTargetShown}>
-            <span className={props.hasWon ? "details--disabled" : undefined}>
+            <span className={props.hasEnded ? "details--disabled" : undefined}>
               Reveal Secret Country Ranks
             </span>
             <span className="details__right">{targetShown ? "-" : "+"}</span>
@@ -81,7 +89,7 @@ const Hint = (props) => {
           >
             <span
               className={
-                !bestGuessActive || props.hasWon
+                !bestGuessActive || props.hasEnded
                   ? "details--disabled"
                   : undefined
               }
@@ -97,7 +105,7 @@ const Hint = (props) => {
           >
             <span
               className={
-                !validCountriesActive || props.hasWon
+                !validCountriesActive || props.hasEnded
                   ? "details--disabled"
                   : undefined
               }

@@ -10,7 +10,7 @@ const GuessedCountries = (props) => {
 
     return (
       <div key={index} className="country-guess">
-        <Twemoji className="emoji--medium">{emoji}</Twemoji>
+        <Twemoji className="emoji emoji--medium">{emoji}</Twemoji>
         <span>{name}</span>
       </div>
     );
