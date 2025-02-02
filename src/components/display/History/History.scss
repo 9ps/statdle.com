@@ -1,0 +1,27 @@
+@import "../../../styles/variables";
+@import "../../../styles/common/button";
+
+.history {
+  &--container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: $w4;
+    background-color: $w10;
+    padding: 10px;
+  }
+
+  &--prev {
+    flex: 1;
+    text-align: left;
+    height: 40px;
+    vertical-align: middle;
+  }
+
+  &--next {
+    flex: 1;
+    text-align: right;
+    height: 40px;
+    vertical-align: middle;
+  }
+}

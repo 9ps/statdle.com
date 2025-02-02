@@ -2,6 +2,12 @@ import React from "react";
 
 // props: stats
 const StatsDisplay = ({ stats }) => {
+  const winPercentage =
+    Math.round(
+      ((stats.played - stats.tally[0][0] - stats.tally[0][1]) * 100) /
+        stats.played
+    ) || "0";
+
   return (
     <>
       <h3 className="subtitle">Statistics</h3>
@@ -13,11 +19,7 @@ const StatsDisplay = ({ stats }) => {
           </div>
         </div>
         <div className="stat">
-          <h3 className="stat__text">
-            {Math.round(
-              ((stats.played - stats.tally[0]) * 100) / stats.played
-            ) || "0"}
-          </h3>
+          <h3 className="stat__text">{winPercentage}</h3>
           <div className="stat__label">
             Win<br></br>Percent
           </div>

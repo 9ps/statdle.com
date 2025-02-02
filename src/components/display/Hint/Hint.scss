@@ -118,6 +118,7 @@
 
   &__container {
     margin: 0 5px 10px 5px;
+    z-index: 1;
 
     &[open] > summary {
       border-radius: 10px 10px 0 0;

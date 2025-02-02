@@ -2,7 +2,6 @@ import React from "react";
 import { COUNTRYEMOJI } from "../../../assets/data";
 import Twemoji from "react-twemoji";
 
-// props: direction, rank, code, name, value, active, valueText, categoryRank
 const CategoryLine = (props) => {
   const emoji = COUNTRYEMOJI[props.code] || "";
   const activeClass =

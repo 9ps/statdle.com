@@ -1,0 +1,165 @@
+@import "../../styles/variables";
+
+.faq {
+  &__container {
+    padding: 20px 20px 100px 20px;
+    max-width: 500px;
+    margin: 0 auto;
+
+    & > p {
+      padding-bottom: 20px;
+      line-height: 1.5;
+      color: $w3;
+    }
+
+    & a {
+      text-decoration: underline;
+      display: inline-block;
+      color: $m1;
+
+      &:hover {
+        color: $m0;
+      }
+      &:active {
+        color: $m0;
+      }
+      &:focus {
+        border: $m1 solid 2px;
+        border-radius: 5px;
+        color: $m0;
+        padding: 0 5px;
+      }
+
+      &:focus:not(:focus-visible) {
+        border: none;
+        padding: 0;
+      }
+    }
+
+    & > blockquote {
+      line-height: 1.5;
+      font-size: 14px;
+      padding-bottom: 20px;
+    }
+
+    & > h1 {
+      font-size: 22px;
+      color: $w4;
+      padding-top: 20px;
+    }
+
+    & > h2 {
+      font-size: 18px;
+      color: $w4;
+      padding: 20px 0 10px 0;
+      border-top: 2px solid $w8;
+      &::before {
+        content: "↑↓ ";
+      }
+    }
+
+    & > h3 {
+      padding-top: 10px;
+      font-size: 16px;
+      color: $w1;
+      font-weight: normal;
+    }
+
+    & ul {
+      padding-bottom: 20px;
+      & > li {
+        padding-left: 20px;
+        color: $w3;
+        list-style-type: none;
+        line-height: 1.5;
+
+        &:before {
+          color: $w5;
+          float: left;
+          margin: 0 0 0 -20px;
+          width: 10px;
+          content: "\2022";
+        }
+      }
+    }
+
+    & > time {
+      font-size: 12px;
+      background-color: $w9;
+      color: $w4;
+      padding: 5px 10px;
+      border-radius: 5px;
+      outline: 2px solid $p3;
+      display: inline-block;
+      margin-bottom: 20px;
+    }
+
+    & > table {
+      padding-bottom: 20px;
+      width: 100%;
+    }
+
+    & th {
+      padding: 0 10px;
+      outline: 2px solid $p3;
+      background-color: $p1;
+      color: $w1;
+      height: 30px;
+      vertical-align: middle;
+      text-align: left;
+
+      &:first-child {
+        border-top-left-radius: 10px;
+        text-align: center;
+      }
+      &:last-child {
+        border-top-right-radius: 10px;
+      }
+      &:nth-child(3) {
+        width: 80px;
+        text-align: center;
+      }
+    }
+
+    & tr {
+      height: 30px;
+      &:nth-child(even) {
+        background-color: $w9;
+      }
+      &:last-child {
+        & > td:first-child {
+          border-bottom-left-radius: 10px;
+        }
+        & > td:last-child {
+          border-bottom-right-radius: 10px;
+        }
+      }
+    }
+
+    & td {
+      padding: 0 10px;
+      color: $w1;
+      outline: 2px solid $p3;
+      vertical-align: middle;
+      &:first-child {
+        text-align: center;
+        width: 40px;
+      }
+      &:nth-child(3) {
+        width: 80px;
+        text-align: center;
+      }
+      & > span {
+        vertical-align: middle;
+      }
+    }
+  }
+}
+
+.tr__blank {
+  height: 10px !important;
+
+  & > td {
+    color: $w5;
+  }
+}

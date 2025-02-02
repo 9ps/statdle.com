@@ -8,8 +8,6 @@
   width: 100%;
   max-width: 420px;
   padding-bottom: 60px;
-  height: calc(100vh - 120px);
-  overflow: scroll;
 }
 
 .tip {
@@ -18,24 +16,10 @@
     margin: 0 auto;
     text-align: center;
     line-height: 1.25;
-    padding: 20px 0;
+    padding: 20px 0 0 0;
   }
 
   &__text {
     color: $w2;
-
-    &--big {
-      font-size: 18px;
-    }
-
-    &--small {
-      color: $w3;
-      font-family: "IBM Plex Mono", "Roboto Mono", monospace;
-      font-size: 12px;
-    }
   }
-}
-
-.filler {
-  flex-grow: 1;
 }

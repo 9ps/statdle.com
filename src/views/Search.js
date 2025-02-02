@@ -11,6 +11,7 @@ class Search extends React.Component {
       autocompleteCountries: {},
       autocompleteIndex: -1,
       validCountry: false,
+      showTip: true,
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -134,6 +135,7 @@ class Search extends React.Component {
     this.setState({
       inputValue: e.target.value,
       autocompleteIndex: -1,
+      showTip: false,
     });
 
     this.handleAutocomplete(e.target.value);
@@ -238,44 +240,52 @@ class Search extends React.Component {
   }
 
   render() {
-    const suggestions = Object.entries(this.state.autocompleteCountries).map(
-      (item, index) => {
-        if (
-          this.state.inputValue === item ||
-          Object.keys(this.state.autocompleteCountries).length === 1 ||
-          this.state.autocompleteIndex === index
-        ) {
-          return (
-            <div
-              role="option"
-              aria-selected="true"
-              key={item[0]}
-              onClick={this.autocompleteClick}
-              className="suggestion suggestion--selected"
-              ref={this.selectedSuggestion}
-            >
-              {item[0]}
-            </div>
-          );
-        } else {
-          return (
-            <div
-              role="option"
-              aria-selected="false"
-              className="suggestion"
-              key={item[0]}
-              onClick={this.autocompleteClick}
-            >
-              {item[0].slice(0, item[1])}
-              <span className="suggestion-match-text">
-                {item[0].slice(item[1], this.state.inputValue.length + item[1])}
-              </span>
-              {item[0].slice(this.state.inputValue.length + item[1])}
-            </div>
-          );
-        }
-      }
-    );
+    const suggestions =
+      this.state.showTip && !this.props.hasEnded ? (
+        <p className="suggestion suggestion__tip">
+          Tip: Guess a country that would rank in the middle of each category
+        </p>
+      ) : (
+        Object.entries(this.state.autocompleteCountries).map((item, index) => {
+          if (
+            this.state.inputValue === item ||
+            Object.keys(this.state.autocompleteCountries).length === 1 ||
+            this.state.autocompleteIndex === index
+          ) {
+            return (
+              <div
+                role="option"
+                aria-selected="true"
+                key={item[0]}
+                onClick={this.autocompleteClick}
+                className="suggestion suggestion--selected"
+                ref={this.selectedSuggestion}
+              >
+                {item[0]}
+              </div>
+            );
+          } else {
+            return (
+              <div
+                role="option"
+                aria-selected="false"
+                className="suggestion"
+                key={item[0]}
+                onClick={this.autocompleteClick}
+              >
+                {item[0].slice(0, item[1])}
+                <span className="suggestion-match-text">
+                  {item[0].slice(
+                    item[1],
+                    this.state.inputValue.length + item[1]
+                  )}
+                </span>
+                {item[0].slice(this.state.inputValue.length + item[1])}
+              </div>
+            );
+          }
+        })
+      );
 
     return (
       <div className="search__container">

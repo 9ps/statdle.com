@@ -40,6 +40,17 @@
     background-color: $w6;
     color: $w1;
   }
+
+  &__tip {
+    font-size: 12px;
+    height: auto;
+    text-align: center;
+    padding: 10px 10px;
+    cursor: default;
+    &:hover {
+      background-color: $w7;
+    }
+  }
 }
 
 .form {

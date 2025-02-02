@@ -5,13 +5,13 @@ import DataTableSelect from "./DataTableSelect";
 import "./dataTable.scss";
 import "../how/modalHow.scss";
 
-const DataTable = (props) => {
+const DataTable = ({ toggleModal }) => {
   //0 - 23
   const [categoryIndex, setCategoryIndex] = useState("0");
 
   return (
     <>
-      <DataTableTop toggleModal={props.toggleModal} />
+      <DataTableTop toggleModal={toggleModal} />
       <DataTableContent categoryIndex={categoryIndex} />
       <DataTableSelect
         categoryIndex={categoryIndex}

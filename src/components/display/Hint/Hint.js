@@ -3,46 +3,45 @@ import { DATA, COUNTRYEMOJI } from "../../../assets/data";
 import Twemoji from "react-twemoji";
 import "./Hint.scss";
 
-// props: hints=[this.state.history.validCountries, this.state.history.bestGuess] targets = [1,2,3,4], hasEnded
-const Hint = (props) => {
+const Hint = ({ hasEnded, hints, targets, setHasHint, doBestGuess }) => {
   const [targetShown, setTargetShown] = useState(0);
   const [validCountriesShown, setValidCountriesShown] = useState(0);
 
   useEffect(() => {
-    if (props.hasEnded) {
+    if (hasEnded) {
       setTargetShown(false);
       setValidCountriesShown(false);
     }
-  }, [props.hasEnded]);
+  }, [hasEnded]);
 
   const flipTargetShown = () => {
-    if (props.hasEnded) {
+    if (hasEnded) {
       setTargetShown(false);
       return;
     }
     setTargetShown(!targetShown);
-    props.setHasHint();
+    setHasHint();
   };
 
   const flipValidCountriesShown = () => {
-    if (props.hasEnded) {
+    if (hasEnded) {
       setValidCountriesShown(false);
       return;
     }
     setValidCountriesShown(!validCountriesShown);
-    props.setHasHint();
+    setHasHint();
   };
 
   let validCountriesCount = 194;
   let bestGuessActive = false;
   let validCountriesActive = false;
   let ValidCountriesLeft = <></>;
-  if (props.hints.length !== 0) {
-    validCountriesCount = props.hints[0].validCountries.length;
+  if (hints !== undefined) {
+    validCountriesCount = hints.validCountries.length;
     bestGuessActive = true;
-    if (props.hints[0].validCountries.length < 30) {
+    if (hints.validCountries.length < 30) {
       validCountriesActive = true;
-      ValidCountriesLeft = props.hints[0].validCountries.map((country) => {
+      ValidCountriesLeft = hints.validCountries.map((country) => {
         return (
           <div className="valid-country" key={[country]}>
             <Twemoji className="emoji emoji--medium valid-country__emoji">
@@ -55,7 +54,7 @@ const Hint = (props) => {
     }
   }
 
-  const Targets = props.targets.map((element) => {
+  const Targets = targets.map((element) => {
     return <span className="target" key={element}>{`#${element}`}</span>;
   });
 
@@ -70,8 +69,12 @@ const Hint = (props) => {
         </summary>
 
         <div className="details__hints">
-          <button className="details details--button" onClick={flipTargetShown}>
-            <span className={props.hasEnded ? "details--disabled" : undefined}>
+          <button
+            className="details details--button"
+            onClick={flipTargetShown}
+            disabled={hasEnded}
+          >
+            <span className={hasEnded ? "details--disabled" : undefined}>
               Reveal Secret Country Ranks
             </span>
             <span className="details__right">{targetShown ? "-" : "+"}</span>
@@ -85,13 +88,12 @@ const Hint = (props) => {
 
           <button
             className="details details--button"
-            onClick={props.doBestGuess}
+            onClick={doBestGuess}
+            disabled={!bestGuessActive || hasEnded}
           >
             <span
               className={
-                !bestGuessActive || props.hasEnded
-                  ? "details--disabled"
-                  : undefined
+                !bestGuessActive || hasEnded ? "details--disabled" : undefined
               }
             >
               Make 2nd Best Guess
@@ -102,10 +104,11 @@ const Hint = (props) => {
           <button
             className="details details--button"
             onClick={flipValidCountriesShown}
+            disabled={!validCountriesActive || hasEnded}
           >
             <span
               className={
-                !validCountriesActive || props.hasEnded
+                !validCountriesActive || hasEnded
                   ? "details--disabled"
                   : undefined
               }

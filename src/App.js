@@ -6,6 +6,7 @@ import Top from "./views/Top";
 
 import DataTable from "./components/table/DataTable";
 import ModalHow from "./components/how/ModalHow";
+import FAQ from "./components/faq/FAQ";
 import ModalWin from "./components/win/ModalWin";
 import Popup from "./components/popup/Popup";
 import Confetti from "./components/win/Confetti";
@@ -43,7 +44,7 @@ class App extends React.Component {
     this.state = {
       categories: {}, // {<categoryname>: {high: <0>, highName: <"">, low: <0> lowName: <""> target: <0>, activeRow: <0>}, ...}
       history: [], //[{name: "", correct: 0, range: N}, ...]
-      modalType: 0, //0: "none", 1: "how" 2: "win from top" 3: "win", 4: "table" TODO
+      modalType: 0, //0: "none", 1: "how" 2: "win from top" 3: "win", 4: "table", 5: "faq"
       popupType: 0, //0: "none", 1: "Already Guessed", 2: "Invalid Country", 3: "Copied to Clipboard"
       hasWon: false,
       hasHint: false,
@@ -53,7 +54,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    // localStorage.clear(); //TEST
+    localStorage.clear(); //TEST
     // seedTest(); //TEST
     setupStats();
     this.setupGame();
@@ -118,6 +119,7 @@ class App extends React.Component {
 
     newHistory.bestGuess = getBestGuess(newCategories);
     newHistory.validCountries = getValidCountries(newCategories);
+    newHistory.categories = structuredClone(newCategories);
 
     let finalHistory = this.state.history.concat(newHistory);
 
@@ -151,6 +153,7 @@ class App extends React.Component {
       newHistory.range.push(0);
     }
     newHistory.correct = 4;
+    newHistory.categories = structuredClone(newCategories);
     let finalHistory = this.state.history.concat(newHistory);
 
     this.setState(
@@ -250,6 +253,8 @@ class App extends React.Component {
         break;
       case 4:
         return <DataTable toggleModal={this.toggleModal} />;
+      case 5:
+        return <FAQ toggleModal={this.toggleModal} />;
       default:
         break;
     }
@@ -273,8 +278,8 @@ class App extends React.Component {
         {modalDisplay}
         <Top toggleModal={this.toggleModal} />
         <Display
+          history={this.state.history}
           values={this.state.categories}
-          hints={this.state.history.slice(-1)}
           doSearch={this.doSearch}
           setHasHint={this.setHasHint}
           guessCount={this.state.history.length}

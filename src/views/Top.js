@@ -4,7 +4,7 @@ import Help from "../assets/icons/help.svg";
 import Results from "../assets/icons/results.svg";
 import Table from "../assets/icons/table.svg";
 
-const Top = (props) => {
+const Top = ({ toggleModal }) => {
   return (
     <div className="nav">
       <h1 className="nav__item nav__left">↑↓ Statdle</h1>
@@ -14,7 +14,7 @@ const Top = (props) => {
           aria-label="data table"
           tabIndex="0"
           className="btn btn--icon"
-          onClick={() => props.toggleModal(4)}
+          onClick={() => toggleModal(4)}
         >
           <img className="icons" src={Table} alt="Data Table" />
         </button>
@@ -23,7 +23,7 @@ const Top = (props) => {
           aria-label="results"
           tabIndex="0"
           className="btn btn--icon"
-          onClick={() => props.toggleModal(2)}
+          onClick={() => toggleModal(2)}
         >
           <img className="icons" src={Results} alt="Results" />
         </button>
@@ -32,7 +32,7 @@ const Top = (props) => {
           aria-label="how to play"
           tabIndex="0"
           className="btn btn--icon"
-          onClick={() => props.toggleModal(1)}
+          onClick={() => toggleModal(1)}
         >
           <img className="icons" src={Help} alt="How to Play" />
         </button>

@@ -57,7 +57,7 @@ class ModalWin extends React.Component {
         <>
           <StatsDisplay stats={stats} />
           <p className="info__text">
-            (finish playing the game for sharing options)
+            finish playing today's game for sharing options
           </p>
           <GuessDistribution tally={stats.tally} played={stats.played} />
           <WinCountries history={this.props.history} hasWon={false} />

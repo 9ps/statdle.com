@@ -1,10 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { loadFull } from "tsparticles";
 import { COUNTRYEMOJI } from "../../assets/data";
 
 const Confetti = ({ hasWon, guessedCountries, supportsFlagEmoji }) => {
   let flags = "";
+  const [playedConfetti, setPlayedConfetti] = useState(0);
   if (supportsFlagEmoji) {
     flags = guessedCountries.map((code) => COUNTRYEMOJI[code] || "");
   }
@@ -17,10 +18,14 @@ const Confetti = ({ hasWon, guessedCountries, supportsFlagEmoji }) => {
       initParticlesEngine(async (engine) => {
         await loadFull(engine);
       });
+
+      setTimeout(() => {
+        setPlayedConfetti(1);
+      }, 8000);
     }
   }, [hasWon]);
 
-  return <>{hasWon && <Particles options={particles} />}</>;
+  return <>{hasWon && !playedConfetti && <Particles options={particles} />}</>;
 };
 
 export default Confetti;

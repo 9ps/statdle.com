@@ -2,14 +2,14 @@ import React from "react";
 import ModalHowExamples from "./ModalHowExamples";
 import ModalHowButtons from "./ModalHowButtons";
 
-const ModalHowContent = (props) => {
+const ModalHowContent = ({ toggleModal }) => {
   return (
     <>
       <p className="modal__subtitle">
         Guess the Secret Country using Statistics!
       </p>
       <ModalHowExamples />
-      <ModalHowButtons toggleModal={props.toggleModal} />
+      <ModalHowButtons toggleModal={toggleModal} />
     </>
   );
 };

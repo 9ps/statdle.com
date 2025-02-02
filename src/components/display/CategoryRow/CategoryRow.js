@@ -3,7 +3,6 @@ import { COUNTRYEMOJI } from "../../../assets/data";
 import Twemoji from "react-twemoji";
 import "./categoryRow.scss";
 
-// props: direction, rank, code, name, value, active, valueText, categoryRank
 const CategoryRow = (props) => {
   const emoji = COUNTRYEMOJI[props.code] || "";
   const activeClass =

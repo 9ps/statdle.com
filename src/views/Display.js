@@ -1,19 +1,23 @@
 import CategoryGroup from "../components/display/CategoryGroup/CategoryGroup.js";
 import Hint from "../components/display/Hint/Hint.js";
-import React from "react";
+import History from "../components/display/History/History.js";
+import { React, useState } from "react";
 import "./display.scss";
 
-//props: values={this.state.categories}, hint=[this.state.history.validCountries, this.state.history.bestGuess], win
 const Display = ({
   values,
-  hints,
   hasEnded,
   setHasHint,
   guessCount,
   doSearch,
-  today,
+  history,
 }) => {
-  const categories = Object.entries(values).map((values, index) => {
+  const [historyIndex, setHistoryIndex] = useState(0);
+  const lastHistory = history.slice(-1)[0];
+
+  const categories = Object.entries(
+    hasEnded ? history[history.length - 1 - historyIndex].categories : values
+  ).map((values, index) => {
     let active = [0, 0];
     if (values[1].activeRow === -2) {
       //win condition
@@ -34,16 +38,30 @@ const Display = ({
         key={index}
         index={index}
         guessCount={guessCount}
+        historyIndex={historyIndex}
+        hasEnded={hasEnded}
       />
     );
   });
 
   const doBestGuess = () => {
-    if (hints === undefined || hasEnded) {
+    if (lastHistory === undefined || hasEnded) {
       return;
     }
     setHasHint();
-    doSearch(hints[0].bestGuess[0]);
+    doSearch(lastHistory.bestGuess[0]);
+  };
+
+  const handlePrev = () => {
+    if (historyIndex < history.length - 1) {
+      setHistoryIndex(historyIndex + 1);
+    }
+  };
+
+  const handleNext = () => {
+    if (historyIndex > 0) {
+      setHistoryIndex(historyIndex - 1);
+    }
   };
 
   const targets = Object.values(values).map((category) => category.target);
@@ -52,27 +70,26 @@ const Display = ({
     <main className="main__container">
       <Hint
         targets={targets}
-        hints={hints}
+        hints={
+          hasEnded ? history[history.length - 1 - historyIndex] : lastHistory
+        }
         doBestGuess={doBestGuess}
         hasEnded={hasEnded}
         setHasHint={setHasHint}
       />
       {guessCount === 0 && (
         <section className="tip__container">
-          <p className="tip__text tip__text--small">{"#" + today}</p>
-
-          <p className="tip__text tip__text--big">Today's Categories:</p>
+          <p className="tip__text">Today's Categories:</p>
         </section>
       )}
       <section>{categories}</section>
-      {/* <div className="filler"></div> */}
-      {guessCount === 0 && (
-        <section className="tip__container">
-          <p className="tip__text tip__text--small">
-            Tip: Guess a country that would rank in the middle of today’s
-            categories
-          </p>
-        </section>
+      {hasEnded && (
+        <History
+          handlePrev={handlePrev}
+          handleNext={handleNext}
+          disabledPrev={historyIndex === history.length - 1}
+          disabledNext={historyIndex === 0}
+        />
       )}
     </main>
   );

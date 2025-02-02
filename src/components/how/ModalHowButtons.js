@@ -3,29 +3,24 @@ import Faq from "../../assets/icons/faq.svg";
 import Feedback from "../../assets/icons/feedback.svg";
 import Table from "../../assets/icons/table.svg";
 
-const ModalHowButtons = (props) => {
+const ModalHowButtons = ({ toggleModal }) => {
   return (
     <>
       <div className="btn--chip__group">
-        <button className="btn btn--chip" onClick={() => props.toggleModal(4)}>
+        <button className="btn btn--chip" onClick={() => toggleModal(4)}>
           <img className="icons" src={Table} alt="Data Table" />
           <span>
             Explore <br />
             the data
           </span>
         </button>
-        <a
-          className="btn btn--chip"
-          target="_blank"
-          rel="noreferrer"
-          href="https://github.com/9ps/statdle.com/blob/main/README.md"
-        >
+        <button className="btn btn--chip" onClick={() => toggleModal(5)}>
           <img className="icons" src={Faq} alt="Frequently Asked Questions" />
           <span>
             Read <br />
             the FAQ
           </span>
-        </a>
+        </button>
 
         <a
           className="btn btn--chip"
@@ -40,7 +35,7 @@ const ModalHowButtons = (props) => {
         </a>
       </div>
       <button
-        onClick={() => props.toggleModal(0)}
+        onClick={() => toggleModal(0)}
         className="btn btn--wide btn--active btn--bottom"
       >
         Play Game

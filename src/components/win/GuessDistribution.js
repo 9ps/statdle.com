@@ -12,8 +12,8 @@ const GuessDistribution = ({ tally, played, currentScore }) => {
   const noHintTally = shiftedTally.map((arr) => arr[0]);
   const hintTally = shiftedTally.map((arr) => arr[1]);
 
-  const highlightNoHint = Array(11).fill("#41309a");
-  const highlightHint = Array(11).fill("#d3226f");
+  const highlightNoHint = Array(11).fill("#35277c");
+  const highlightHint = Array(11).fill("#af1d5c");
 
   if (currentScore !== undefined) {
     highlightNoHint[currentScore - 1] = "#503bba";
@@ -63,8 +63,8 @@ const GuessDistribution = ({ tally, played, currentScore }) => {
           ]}
           config={{
             displayModeBar: false,
-            responsive: true,
-            staticPlot: false,
+            responsive: false,
+            staticPlot: true,
           }}
           layout={{
             barmode: "stack",
