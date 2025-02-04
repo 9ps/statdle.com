@@ -42,6 +42,7 @@
 
   &__tr {
     height: 30px;
+    background-color: $w10;
     &:nth-child(even) {
       background-color: $w9;
     }

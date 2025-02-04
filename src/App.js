@@ -54,7 +54,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    localStorage.clear(); //TEST
+    // localStorage.clear(); //TEST
     // seedTest(); //TEST
     setupStats();
     this.setupGame();

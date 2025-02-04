@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import CategoryRow from "../CategoryRow/CategoryRow.js";
 import CategoryTitle from "../CategoryTitle/CategoryTitle.js";
 import CategoryDetails from "../CategoryDetails/CategoryDetails.js";
@@ -16,7 +16,7 @@ const CategoryGroup = ({
   const [showValues, setShowValues] = useState(
     values[0] === "1" ? true : false
   );
-  const [showDetails, setShowDetails] = useState(!guessCount);
+  const [showDetails, setShowDetails] = useState(0);
   const category = values[1];
   const flipShowValues = () => {
     if (category.highValues[0] || category.lowValues[0]) {
@@ -27,12 +27,6 @@ const CategoryGroup = ({
   const flipShowDetails = () => {
     setShowDetails(!showDetails);
   };
-
-  useEffect(() => {
-    if (guessCount === 1) {
-      setShowDetails(0);
-    }
-  }, [guessCount]);
 
   const firstRound = values[1].activeRow === -1;
   const animationStage = hasEnded ? historyIndex : guessCount;
